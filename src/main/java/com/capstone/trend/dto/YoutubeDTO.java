@@ -1,5 +1,6 @@
 package com.capstone.trend.dto;
 
+import com.google.api.services.youtube.model.Thumbnail;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

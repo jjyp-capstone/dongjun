@@ -5,8 +5,8 @@
     <title>Mainpage</title>
 </head>
 <body>
-<form action th:object="${keyword}" method = "POST">
-    <input type="text" th:name ="keyword">
+<form th:action="/result2" th:object="${youtube}" method = "POST">
+    <input type="text">
     <input type="submit">
 </form>
 
