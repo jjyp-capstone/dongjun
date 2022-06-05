@@ -24,8 +24,7 @@ import java.util.List;
 public class MainpageController {
     @GetMapping("/main")
     public String getSearch(Model model){
-        ArrayList<YoutubeDTO> youtubeDTOS = new ArrayList<>();
-        model.addAttribute("youtube", youtubeDTOS);
+
 
         return "mainpage";
     }
