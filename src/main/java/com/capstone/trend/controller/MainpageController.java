@@ -3,9 +3,11 @@ package com.capstone.trend.controller;
 import com.capstone.trend.Crawl;
 import com.capstone.trend.YoutubeAPI;
 import com.capstone.trend.domain.IPC;
+import com.capstone.trend.domain.Keywordcount;
 import com.capstone.trend.dto.MainpageDTO;
 import com.capstone.trend.dto.YoutubeDTO;
 import com.capstone.trend.repository.IPCRepository;
+import com.capstone.trend.repository.KeywordcountReopsitory;
 import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchResult;
 import com.google.api.services.youtube.model.Thumbnail;
@@ -25,6 +27,9 @@ import java.util.List;
 public class MainpageController {
     @Autowired
     private final IPCRepository ipcRepository;
+
+    @Autowired
+    private final KeywordcountReopsitory keywordcountReopsitory;
 
     @GetMapping("/main")
     public String getSearch(Model model){
@@ -73,6 +78,11 @@ public class MainpageController {
         List<IPC> ipcList = new ArrayList<>();
         ipcList.addAll(ipcRepository.find_all());
         model.addAttribute("IPC",ipcList);
+
+        List<Keywordcount> keywordcounts= new ArrayList<>();
+        keywordcounts.addAll(keywordcountReopsitory.find_all());
+
+        model.addAttribute("keyword",keywordcounts);
 
         return "testpage";
 
