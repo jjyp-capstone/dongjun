@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultpage</title>
+</head>
+<body>
+
+<h1>IPC TEST</h1>
+<table>
+    <tr>
+        <th>code</th>
+        <th>frequency</th>
+        <th>average_fluctuation_rate</th>
+    </tr>
+    <tr th:each="IPC:${IPC}">
+        <td th:text="${IPC.code}"></td>
+        <td th:text="${IPC.frequency}"></td>
+        <td th:text="${IPC.average_fluctuation_rate}"></td>
+    </tr>
+</table>
+</body>
+</html>

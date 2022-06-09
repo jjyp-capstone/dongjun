@@ -2,26 +2,30 @@ package com.capstone.trend.controller;
 
 import com.capstone.trend.Crawl;
 import com.capstone.trend.YoutubeAPI;
+import com.capstone.trend.domain.IPC;
 import com.capstone.trend.dto.MainpageDTO;
 import com.capstone.trend.dto.YoutubeDTO;
+import com.capstone.trend.repository.IPCRepository;
 import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchResult;
 import com.google.api.services.youtube.model.Thumbnail;
-import com.google.api.services.youtube.model.ThumbnailDetails;
 import lombok.RequiredArgsConstructor;
-import org.jsoup.nodes.Element;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping
 public class MainpageController {
+    @Autowired
+    private final IPCRepository ipcRepository;
+
     @GetMapping("/main")
     public String getSearch(Model model){
 
@@ -61,5 +65,16 @@ public class MainpageController {
 
 
         return "youtuberesult";
+    }
+
+    @GetMapping("/IPC")
+    public String testing(Model model){
+
+        List<IPC> ipcList = new ArrayList<>();
+        ipcList.addAll(ipcRepository.find_all());
+        model.addAttribute("IPC",ipcList);
+
+        return "testpage";
+
     }
 }
