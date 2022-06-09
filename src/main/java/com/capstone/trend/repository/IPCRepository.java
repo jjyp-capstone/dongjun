@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IPCRepository extends JpaRepository<IPC, Integer> {
 
-    @Query(value = "select * from ipc_list", nativeQuery = true)
+    @Query(value = "select ipc_code,frequency,average_fluctuation_rate from ipc_list", nativeQuery = true)
     List<IPC> find_all();
 
 }
