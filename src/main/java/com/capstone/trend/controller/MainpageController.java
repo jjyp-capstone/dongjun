@@ -73,16 +73,46 @@ public class MainpageController {
     }
 
     @GetMapping("/IPC")
-    public String testing(Model model){
+    public String testing(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+                          @RequestParam(value = "ipcCode", required = false, defaultValue = "") String ipcCode, Model model){
 
         List<IPC> ipcList = new ArrayList<>();
+
         ipcList.addAll(ipcRepository.find_all());
         model.addAttribute("IPC",ipcList);
 
         List<Keywordcount> keywordcounts= new ArrayList<>();
-        keywordcounts.addAll(keywordcountReopsitory.find_all());
 
-        model.addAttribute("keyword",keywordcounts);
+        System.out.println("ipc code: "+ipcCode);
+        System.out.println("keyword: "+keyword);
+
+        if (keyword.isBlank() && ipcCode.isBlank()){
+            keywordcounts.addAll(keywordcountReopsitory.find_all());
+            model.addAttribute("keyword",keywordcounts);
+
+        }
+
+        else if(!keyword.isBlank() && ipcCode.isBlank() ){
+            System.out.println("search by keyword");
+            keywordcounts.addAll(keywordcountReopsitory.findByKeyword(keyword));
+            model.addAttribute("keyword",keywordcounts);
+
+        }
+
+        else if(keyword.isBlank() && !ipcCode.isBlank()){
+            System.out.println("search by ipc code");
+            keywordcounts.addAll(keywordcountReopsitory.findByIpcCode(ipcCode));
+            model.addAttribute("keyword",keywordcounts);
+
+
+        }
+        else{
+            System.out.println("test success");
+
+            keywordcounts.addAll(keywordcountReopsitory.find_all());
+            model.addAttribute("keyword",keywordcounts);
+
+        }
 
         return "testpage";
 

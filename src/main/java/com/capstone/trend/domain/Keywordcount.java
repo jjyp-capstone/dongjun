@@ -17,24 +17,24 @@ import java.security.PublicKey;
 @Table(name = "keyword_count")
 public class Keywordcount {
     @Id
-    @Column
+    @Column(name = "keyword")
     private String keyword;
 
-    @Column
+    @Column(name = "ipc_code")
     private String ipc_code;
 
-    @Column
+    @Column(name = "count")
     private Integer count;
 
-    @Column
-    private Integer rank;
+    @Column(name = "count_rank")
+    private Integer count_rank;
 
     @Builder
-    public Keywordcount(String keyword, String ipc_code, Integer count, Integer rank){
+    public Keywordcount(String keyword, String ipc_code, Integer count, Integer count_rank){
         this.keyword = keyword;
         this.ipc_code = ipc_code;
         this.count = count;
-        this.rank = rank;
+        this.count_rank = count_rank;
     }
 
 }

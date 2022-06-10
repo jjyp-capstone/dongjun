@@ -7,14 +7,14 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface KeywordcountReopsitory extends JpaRepository<Keywordcount, Long> {
+public interface KeywordcountReopsitory extends JpaRepository<Keywordcount, Integer> {
 
-    @Query(value = "select keyword,ipc_code,count,rank from keyword_count", nativeQuery = true)
+    @Query(value = "select keyword,ipc_code,count,count_rank from keyword_count", nativeQuery = true)
     List<Keywordcount> find_all();
 
-    @Query(value = "select keyword,ipc_code,count,rank from keyword_count where keyword=:keyword", nativeQuery = true)
-    List<Keywordcount> findByKeyword(@Param("keyword") String keyword);
+    @Query(value = "select keyword,ipc_code,count,count_rank from keyword_count where keyword = :kw", nativeQuery = true)
+    List<Keywordcount> findByKeyword(@Param("kw") String kw);
 
-    @Query(value = "select keyword, ipc_code, count, rank from keyword_count where ipc_code=:ipcCode", nativeQuery = true)
+    @Query(value = "select keyword,ipc_code,count,count_rank from keyword_count where ipc_code = :ipcCode", nativeQuery = true)
     List<Keywordcount> findByIpcCode(@Param("ipcCode")String ipcCode);
 }
