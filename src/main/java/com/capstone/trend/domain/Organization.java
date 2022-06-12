@@ -23,4 +23,12 @@ public class Organization {
     @Column(name = "ipc_code")
     private String ipc_code;
 
+    @Builder
+    public Organization(Integer organ_id, String organization, Integer patent_number, String ipc_code){
+        this.organ_id = organ_id;
+        this.organization = organization;
+        this.patent_number = patent_number;
+        this.ipc_code =ipc_code;
+    }
+
 }
