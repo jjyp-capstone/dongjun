@@ -178,7 +178,7 @@ public class MainpageController {
     @Autowired
     private final TrendscoreRepository trendscoreRepository;
 
-    @GetMapping("top_trend")
+    @GetMapping("/top_trend")
     public String top_trend(Model model){
         List<Trendscore> trendscores = new ArrayList<>();
 
@@ -186,5 +186,19 @@ public class MainpageController {
         model.addAttribute("top_trend", trendscores);
 
         return "top_trend";
+    }
+
+    @Autowired
+    private final IPChistoryRepository ipchistoryRepository;
+
+    @GetMapping("ipc_history")
+    public String ipc_history(@RequestParam(value = "ipcCode")String ipcCode, Model model){
+        List<IPChistory> ipchistoryList = new ArrayList<>();
+
+        ipchistoryList.addAll(ipchistoryRepository.findByCode(ipcCode));
+        model.addAttribute("ipc_history", ipchistoryList);
+        model.addAttribute("ipc_code",ipcCode);
+
+        return "ipc_history";
     }
 }
