@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Getter @Setter
 @NoArgsConstructor
-@Table(name = "IPC_List")
+@Table(name = "ipc_list")
 public class IPC {
 
     @Id
